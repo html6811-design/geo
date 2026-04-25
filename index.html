@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMM Boost</title>
+
+<style>
+body {
+  background: linear-gradient(135deg, #24243e, #302b63, #0f0c29);
+  color: #fff;
+  font-family: Arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 15px;
+  width: 320px;
+  text-align: center;
+}
+
+.opt {
+  padding: 10px;
+  margin: 5px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.opt.selected {
+  background: #00d2ff;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: #00d2ff;
+  color: #000;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h2>Выбери пакет</h2>
+
+<div onclick="choose(this,'1000')" class="opt selected">+1000</div>
+<div onclick="choose(this,'2000')" class="opt">+2000</div>
+<div onclick="choose(this,'5000')" class="opt">+5000</div>
+
+<form name="boost-final" method="POST" data-netlify="true">
+  
+  <!-- ВАЖНО для Netlify -->
+  <input type="hidden" name="form-name" value="boost-final">
+  <input type="hidden" id="amount" name="amount" value="1000">
+
+  <input type="text" name="login" placeholder="Логин" required>
+
+  <button type="submit">Отправить</button>
+</form>
+
+</div>
+
+<script>
+function choose(el,val){
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('amount').value = val;
+}
+</script>
+
+</body>
+</html>
